@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Scribd & Studocu PDF Downloader",
+  "version": "1.5.7",
+  "description": "Tải tài liệu đang xem trên Scribd và Studocu thành PDF",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.scribd.com/*",
+    "https://html.scribdassets.com/*",
+    "https://html.scribd.com/*",
+    "https://www.studocu.vn/*",
+    "https://studocu.vn/*",
+    "https://www.studocu.com/*",
+    "https://studocu.com/*",
+    "https://doc-assets.studocu.com/*",
+    "https://website-assets.studocu.com/*",
+    "https://d20ohkaloyme4g.cloudfront.net/fonts/document_fonts/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-interceptor.js"],
+      "matches": ["https://www.scribd.com/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.scribd.com/document/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.studocu.vn/*/document/*",
+        "https://studocu.vn/*/document/*",
+        "https://www.studocu.com/*/document/*",
+        "https://studocu.com/*/document/*"
+      ],
+      "js": ["studocu.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

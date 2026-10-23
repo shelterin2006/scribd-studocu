@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>📚 Scribd & Studocu PDF</h2>
+    </div>
+    
+    <div id="status-not-ready" class="status">
+      <p>⚠ Vui lòng mở tài liệu Scribd hoặc Studocu</p>
+      <p class="hint">Hỗ trợ scribd.com, studocu.vn và studocu.com</p>
+    </div>
+    
+    <div id="status-ready" class="status" style="display:none">
+      <div class="info-box">
+        <div class="info-row">
+          <span class="label">Document ID:</span>
+          <span id="doc-id" class="value">-</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Tổng số trang:</span>
+          <span id="total-pages" class="value">-</span>
+        </div>
+        <div class="info-row">
+          <span id="collected-label" class="label">Đã thu thập:</span>
+          <span id="collected-pages" class="value">0</span>
+        </div>
+      </div>
+      
+      <div id="studocu-options" class="mode-options" style="display:none">
+        <label for="studocu-mode">Chế độ tải</label>
+        <select id="studocu-mode" aria-describedby="mode-description">
+          <option value="auto">Tự động (khuyên dùng)</option>
+          <option value="html">Đầy đủ (chữ + ảnh)</option>
+          <option value="images">Chỉ ảnh (nhanh)</option>
+        </select>
+        <p id="mode-description" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div id="progress-text" class="progress-text">0%</div>
+      </div>
+      
+      <div id="log" class="log"></div>
+      
+      <div class="buttons">
+        <button id="btn-scan" class="btn btn-primary">
+          🔍 Bước 1: Quét tất cả trang
+        </button>
+        <button id="btn-download" class="btn btn-success" disabled>
+          📥 Bước 2: Tải PDF
+        </button>
+        <button id="btn-stop" class="btn btn-danger" style="display:none">
+          ⏹ Dừng
+        </button>
+        <button id="btn-clear-cache" class="btn btn-secondary" disabled title="Chỉ xóa dữ liệu extension của tài liệu này. PDF đã tải vẫn được giữ.">
+          🗑 Xóa cache tài liệu này
+        </button>
+      </div>
+      
+      <p id="reader-hint" class="hint">
+        <strong>Lưu ý:</strong> Extension sẽ tự động scroll và thu thập tất cả trang. 
+        Vui lòng không đóng tab trong quá trình quét!
+      </p>
+    </div>
+  </div>
+  
+  <script src="studocu.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
